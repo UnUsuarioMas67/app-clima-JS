@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>App del Clima</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main>
+			<section>
+				<div class="search">
+					<input type="text" name="search-bar" id="search-bar" placeholder="Escribe nombre de ciudad" />
+
+					<button id="search-button">
+						<img src="images/search.svg" alt="boton de buscar" />
+					</button>
+				</div>
+
+				<button id="current-location-button">
+					<img src="images/geo-alt-fill.svg" alt="" />
+					Usar ubicación actual
+				</button>
+			</section>
+
+			<section>
+				<div class="top">
+					<div id="location">--</div>
+					<div id="description">--</div>
+				</div>
+
+				<div class="middle">
+					<img
+						src="images/modern_weather_icons/weather_icons_dovora_interactive/SVG/day_partial_cloud.svg"
+						alt="icono del clima"
+						id="weather-icon"
+						width="128"
+						height="128" />
+
+					<div id="temp">--°<span>c</span></div>
+				</div>
+
+				<div class="bottom">
+					<div id="humidity">
+						<div class="amount">0%</div>
+						<div class="title">Humedad</div>
+					</div>
+					<div id="wind-speed">
+						<div class="amount">0 km/h</div>
+						<div class="title">Vel. del viento</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script src="main.js"></script>
+	</body>
+</html>
