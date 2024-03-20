@@ -31,9 +31,9 @@ function getWeatherData(url) {
 function updateWeather(weatherData) {
 	let data = {
 		description: weatherData.weather[0].description,
-		temperature: weatherData.main.feels_like /* en grados Celsius */,
+		temperature: weatherData.main.temp, /* en grados Celsius */
 		humidity: weatherData.main.humidity,
-		windSpeed: weatherData.wind.speed * 3.6 /* Convertido de m/s a km/h */,
+		windSpeed: weatherData.wind.speed * 3.6, /* Convertido de m/s a km/h */
 	};
 
 	const description = document.querySelector("#description");
