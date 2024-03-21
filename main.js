@@ -25,9 +25,24 @@ window.onload = showWeatherByCurrentLocation;
 const currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.onclick = showWeatherByCurrentLocation;
 
+function unsetValues() {
+	const location = document.querySelector("#location");
+	const description = document.querySelector("#description");
+	const temperature = document.querySelector("#temp");
+	const humidity = document.querySelector("#humidity .amount");
+	const windSpeed = document.querySelector("#wind-speed .amount");
+
+	location.textContent = "--";
+	description.textContent = "--";
+	temperature.textContent = "--°c";
+	humidity.textContent = "0%";
+	windSpeed.textContent = "0 km/h";
+}
+
 function showWeatherByCurrentLocation() {
 	if (!navigator.geolocation) return;
 
+	unsetValues();
 	navigator.geolocation.getCurrentPosition((pos) => {
 		let lon = pos.coords.longitude;
 		let lat = pos.coords.latitude;
