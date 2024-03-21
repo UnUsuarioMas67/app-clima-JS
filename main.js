@@ -20,9 +20,10 @@ const weatherIconsMap = {
 	"50n": "mist",
 };
 
-window.onload = () => {
-	showWeatherByCurrentLocation();
-};
+window.onload = showWeatherByCurrentLocation;
+
+const currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.onclick = showWeatherByCurrentLocation;
 
 function showWeatherByCurrentLocation() {
 	if (!navigator.geolocation) return;
@@ -71,7 +72,7 @@ function updateWeather(weatherData) {
 	humidity.textContent = data.humidity + "%";
 	windSpeed.textContent = Math.round(data.windSpeed) + " km/h";
 	icon.src = weatherIconsPath + "\\" + weatherIconsMap[data.icon] + ".svg";
-	icon.alt = 'icono de ' + data.description; 
+	icon.alt = "icono de " + data.description;
 }
 
 function findLocationName(url) {
