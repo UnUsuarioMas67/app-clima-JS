@@ -20,19 +20,21 @@ const weatherIconsMap = {
 	"50n": "mist",
 };
 
-window.onload = showWeatherByCurrentLocation;
+// referencias a elementos HTML
+const locationName = document.querySelector("#location");
+const description = document.querySelector("#description");
+const temperature = document.querySelector("#temp");
+const humidity = document.querySelector("#humidity .amount");
+const windSpeed = document.querySelector("#wind-speed .amount");
+const icon = document.querySelector("#weather-icon");
 
 const currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.onclick = showWeatherByCurrentLocation;
 
-function unsetValues() {
-	const location = document.querySelector("#location");
-	const description = document.querySelector("#description");
-	const temperature = document.querySelector("#temp");
-	const humidity = document.querySelector("#humidity .amount");
-	const windSpeed = document.querySelector("#wind-speed .amount");
+window.onload = showWeatherByCurrentLocation;
 
-	location.textContent = "--";
+function unsetValues() {
+	locationName.textContent = "--";
 	description.textContent = "--";
 	temperature.textContent = "--°c";
 	humidity.textContent = "0%";
@@ -73,12 +75,6 @@ function updateWeather(weatherData) {
 		icon: weatherData.weather[0].icon,
 	};
 
-	const description = document.querySelector("#description");
-	const temperature = document.querySelector("#temp");
-	const humidity = document.querySelector("#humidity .amount");
-	const windSpeed = document.querySelector("#wind-speed .amount");
-	const icon = document.querySelector("#weather-icon");
-
 	console.log(data);
 	console.log(weatherIconsPath + "\\" + weatherIconsMap[data.icon] + ".svg");
 
@@ -101,6 +97,5 @@ function updateLocation(results) {
 	let city = "es" in results[0].local_names ? results[0].local_names.es : results[0].name;
 	let country = results[0].country;
 
-	const location = document.querySelector("#location");
-	location.textContent = `${city}, ${country}`;
+	locationName.textContent = `${city}, ${country}`;
 }
