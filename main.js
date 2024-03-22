@@ -1,44 +1,44 @@
 const weatherIconsPath = `images\\modern_weather_icons\\weather_icons_dovora_interactive\\SVG`;
 const weatherIconsMap = {
-	"01d": "day_clear",
-	"01n": "night_full_moon_clear",
-	"02d": "day_partial_cloud",
-	"02n": "night_full_moon_partial_cloud",
-	"03d": "cloudy",
-	"03n": "cloudy",
-	"04d": "overcast",
-	"04n": "overcast",
-	"09d": "rain",
-	"09n": "rain",
-	"10d": "day_rain",
-	"10n": "night_full_moon_rain",
-	"11d": "thunder",
-	"11n": "thunder",
-	"13d": "day_snow",
-	"13n": "night_full_moon_snow",
-	"50d": "mist",
-	"50n": "mist",
+	'01d': 'day_clear',
+	'01n': 'night_full_moon_clear',
+	'02d': 'day_partial_cloud',
+	'02n': 'night_full_moon_partial_cloud',
+	'03d': 'cloudy',
+	'03n': 'cloudy',
+	'04d': 'overcast',
+	'04n': 'overcast',
+	'09d': 'rain',
+	'09n': 'rain',
+	'10d': 'day_rain',
+	'10n': 'night_full_moon_rain',
+	'11d': 'thunder',
+	'11n': 'thunder',
+	'13d': 'day_snow',
+	'13n': 'night_full_moon_snow',
+	'50d': 'mist',
+	'50n': 'mist',
 };
 
 // referencias a elementos HTML
-const locationName = document.querySelector("#location");
-const description = document.querySelector("#description");
-const temperature = document.querySelector("#temp");
-const humidity = document.querySelector("#humidity .amount");
-const windSpeed = document.querySelector("#wind-speed .amount");
-const icon = document.querySelector("#weather-icon");
+const locationName = document.querySelector('#location');
+const description = document.querySelector('#description');
+const temperature = document.querySelector('#temp');
+const humidity = document.querySelector('#humidity .amount');
+const windSpeed = document.querySelector('#wind-speed .amount');
+const icon = document.querySelector('#weather-icon');
 
-const currentLocationButton = document.querySelector("#current-location-button");
+const currentLocationButton = document.querySelector('#current-location-button');
 currentLocationButton.onclick = showWeatherByCurrentLocation;
 
 window.onload = showWeatherByCurrentLocation;
 
 function unsetValues() {
-	locationName.textContent = "--";
-	description.textContent = "--";
-	temperature.textContent = "--°c";
-	humidity.textContent = "0%";
-	windSpeed.textContent = "0 km/h";
+	locationName.textContent = '--';
+	description.textContent = '--';
+	temperature.textContent = '--°c';
+	humidity.textContent = '0%';
+	windSpeed.textContent = '0 km/h';
 }
 
 function showWeatherByCurrentLocation() {
@@ -76,14 +76,14 @@ function updateWeather(weatherData) {
 	};
 
 	console.log(data);
-	console.log(weatherIconsPath + "\\" + weatherIconsMap[data.icon] + ".svg");
+	console.log(weatherIconsPath + '\\' + weatherIconsMap[data.icon] + '.svg');
 
 	description.textContent = data.description;
-	temperature.textContent = Math.round(data.temperature) + "°c";
-	humidity.textContent = data.humidity + "%";
-	windSpeed.textContent = Math.round(data.windSpeed) + " km/h";
-	icon.src = weatherIconsPath + "\\" + weatherIconsMap[data.icon] + ".svg";
-	icon.alt = "icono de " + data.description;
+	temperature.textContent = Math.round(data.temperature) + '°c';
+	humidity.textContent = data.humidity + '%';
+	windSpeed.textContent = Math.round(data.windSpeed) + ' km/h';
+	icon.src = weatherIconsPath + '\\' + weatherIconsMap[data.icon] + '.svg';
+	icon.alt = 'icono de ' + data.description;
 }
 
 function findLocationName(url) {
@@ -94,7 +94,7 @@ function findLocationName(url) {
 }
 
 function updateLocation(results) {
-	let city = "es" in results[0].local_names ? results[0].local_names.es : results[0].name;
+	let city = 'es' in results[0].local_names ? results[0].local_names.es : results[0].name;
 	let country = results[0].country;
 
 	locationName.textContent = `${city}, ${country}`;
