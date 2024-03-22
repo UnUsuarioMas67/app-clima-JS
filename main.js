@@ -31,6 +31,10 @@ const icon = document.querySelector('#weather-icon');
 const currentLocationButton = document.querySelector('#current-location-button');
 currentLocationButton.onclick = showWeatherByCurrentLocation;
 
+const searchBar = document.querySelector('#search-bar');
+const searchButton = document.querySelector('#search-button');
+searchButton.onclick = () => showWeatherBySearch(searchBar.value);
+
 window.onload = showWeatherByCurrentLocation;
 
 function unsetValues() {
@@ -55,8 +59,34 @@ function showWeatherByCurrentLocation() {
 
 		// llamada a API para obtener nombre de ubicacion
 		let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
-		findLocationName(locationUrl).then((results) => updateLocation(results));
+		findLocationName(locationUrl).then((results) => updateLocation(results[0]));
 	});
+}
+
+function showWeatherBySearch(textInput) {
+	if (textInput === '') return;
+
+	searchUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${textInput}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
+	fetch(searchUrl)
+		.then(
+			(response) => response.json(),
+			(error) => console.log(error)
+		)
+		.then((results) => {
+			console.log(results, results.length);
+			if (results.length == 0) return;
+
+			// tomar las coordenadas del primer resultado
+			let lon = results[0].lon;
+			let lat = results[0].lat;
+
+			// llamada a API para obtener informacion sobre el clima
+			let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3906978a86a4df9902b2c193df046746&lang=es&units=metric`;
+			getWeatherData(weatherUrl).then((weatherData) => updateWeather(weatherData));
+
+			// actualizar el nombre de la ubicación
+			updateLocation(results[0]);
+		});
 }
 
 function getWeatherData(url) {
@@ -93,9 +123,9 @@ function findLocationName(url) {
 	);
 }
 
-function updateLocation(results) {
-	let city = 'es' in results[0].local_names ? results[0].local_names.es : results[0].name;
-	let country = results[0].country;
+function updateLocation(locationData) {
+	let city = 'es' in locationData.local_names ? locationData.local_names.es : locationData.name;
+	let country = locationData.country;
 
 	locationName.textContent = `${city}, ${country}`;
 }
