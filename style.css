@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+
+:root {
+	/* Colores */
+	--body-bg: #13123e;
+	--gradient-top: #439eef;
+	--gradient-bottom: #220fc8;
+	--text: #fff;
+	--button-text: rgba(34, 15, 200, 0.75);
+	--button-bg: rgba(255, 255, 255, 0.75);
+	--text-box-bg: rgba(255, 255, 255, 0.15);
+	--placeholder: rgba(255, 255, 255, 0.4);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Lexend', sans-serif;
+	font-weight: 400;
+}
+
+.semi-bold {
+	font-weight: 600;
+}
+
+body {
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: var(--body-bg);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+
+	gap: 8px;
+	max-width: 374px;
+	width: 100%;
+
+	color: var(--text);
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	background: linear-gradient(135deg, var(--gradient-top), var(--gradient-bottom));
+	border-radius: 1.5rem;
+}
+
+section:first-child {
+	gap: 16px;
+	padding: 20px 22px;
+}
+
+button {
+	background-color: var(--button-bg);
+	color: var(--button-text);
+	border: none;
+	font-size: 14px;
+}
+
+button:hover {
+	filter: brightness(0.95);
+}
+
+button:active {
+	filter: brightness(0.85);
+}
+
+#search-button {
+	width: 40px;
+	height: 40px;
+	border-radius: 50px;
+}
+
+#search-button svg {
+	width: 24px;
+	height: 24px;
+}
+
+#current-location-button {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 8px 16px;
+	border-radius: 15px;
+}
+
+.search {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+}
+
+#search-bar {
+	flex-grow: 1;
+	padding: 8px 16px;
+	background-color: var(--text-box-bg);
+	color: var(--text);
+	font-size: 14px;
+	border: none;
+	border-radius: 20px;
+}
+
+#search-bar::placeholder {
+	color: var(--placeholder);
+}
+
+#search-bar:focus-visible {
+	outline: 2px solid var(--placeholder);
+}
+
+section:last-child {
+	gap: 32px;
+	padding: 32px;
+}
+
+.top {
+	text-align: center;
+	width: 100%;
+}
+
+#location {
+	font-size: 24px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	padding-bottom: 0.8rem;
+}
+
+#description {
+	text-transform: capitalize;
+}
+
+#temp {
+	display: flex;
+	justify-content: center;
+	/* align-items: start; */
+
+	text-align: center;
+}
+
+.temp-value {
+	font-size: 48px;
+}
+
+.temp-unit {
+	font-size: 40px;
+}
+
+.bottom {
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+}
+
+.bottom > div {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.bottom svg {
+	width: 24px;
+	height: 24px;
+}
+
+.amount {
+	font-size: 18px;
+	font-weight: 300;
+}
+
+.title {
+	font-size: 12px;
+}

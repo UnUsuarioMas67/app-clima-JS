@@ -23,7 +23,7 @@ const weatherIconsMap = {
 // referencias a elementos HTML
 const locationName = document.querySelector('#location');
 const description = document.querySelector('#description');
-const temperature = document.querySelector('#temp');
+const temperature = document.querySelector('#temp .temp-value');
 const humidity = document.querySelector('#humidity .amount');
 const windSpeed = document.querySelector('#wind-speed .amount');
 const icon = document.querySelector('#weather-icon');
@@ -40,7 +40,7 @@ window.onload = showWeatherByCurrentLocation;
 function unsetValues() {
 	locationName.textContent = '--';
 	description.textContent = '--';
-	temperature.textContent = '--°c';
+	temperature.textContent = '--';
 	humidity.textContent = '0%';
 	windSpeed.textContent = '0 km/h';
 }
@@ -48,7 +48,6 @@ function unsetValues() {
 function showWeatherByCurrentLocation() {
 	if (!navigator.geolocation) return;
 
-	unsetValues();
 	navigator.geolocation.getCurrentPosition((pos) => {
 		let lon = pos.coords.longitude;
 		let lat = pos.coords.latitude;
@@ -109,7 +108,7 @@ function updateWeather(weatherData) {
 	console.log(weatherIconsPath + '\\' + weatherIconsMap[data.icon] + '.svg');
 
 	description.textContent = data.description;
-	temperature.textContent = Math.round(data.temperature) + '°c';
+	temperature.textContent = Math.round(data.temperature);
 	humidity.textContent = data.humidity + '%';
 	windSpeed.textContent = Math.round(data.windSpeed) + ' km/h';
 	icon.src = weatherIconsPath + '\\' + weatherIconsMap[data.icon] + '.svg';
