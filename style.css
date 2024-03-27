@@ -126,9 +126,6 @@ section:last-child {
 
 #location {
 	font-size: 24px;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
 	padding-bottom: 0.8rem;
 }
 
@@ -162,6 +159,18 @@ section:last-child {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+}
+
+@media (max-width: 325px) {
+	.bottom {
+		flex-direction: column;
+		align-items: start;
+		gap: 16px;
+	}
+
+	.bottom > div {
+		gap: 2rem;
+	}
 }
 
 .bottom svg {
