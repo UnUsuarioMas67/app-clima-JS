@@ -57,7 +57,7 @@ function showWeatherByCurrentLocation() {
 		getWeatherData(weatherUrl).then((weatherData) => updateWeather(weatherData));
 
 		// llamada a API para obtener nombre de ubicacion
-		let locationUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
+		let locationUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
 		findLocationName(locationUrl).then((results) => updateLocation(results[0]));
 	});
 }
@@ -65,7 +65,7 @@ function showWeatherByCurrentLocation() {
 function showWeatherBySearch(textInput) {
 	if (textInput === '') return;
 
-	searchUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${textInput}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
+	searchUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${textInput}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
 	fetch(searchUrl)
 		.then(
 			(response) => response.json(),
