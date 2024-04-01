@@ -58,7 +58,10 @@ function showWeatherByCurrentLocation() {
 
 		// llamada a API para obtener nombre de ubicacion
 		let locationUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
-		findLocationName(locationUrl).then((results) => updateLocation(results[0]));
+		findLocationName(locationUrl).then((results) => {
+			console.log(results);
+			updateLocation(results[0]);
+		});
 	});
 }
 
@@ -123,7 +126,7 @@ function findLocationName(url) {
 }
 
 function updateLocation(locationData) {
-	let city = 'es' in locationData.local_names ? locationData.local_names.es : locationData.name;
+	let city = 'local_names' in locationData && 'es' in locationData.local_names ? locationData.local_names.es : locationData.name;
 	let country = locationData.country;
 
 	locationName.textContent = `${city}, ${country}`;
