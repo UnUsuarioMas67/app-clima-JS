@@ -9,8 +9,6 @@ Aplicación web hecha con HTML, CSS y JavaScript que obtiene información sobre 
 - Búsqueda del clima en una ciudad específica.
 - Mostrar el clima en su ubicación actual (requiere permisos).
 
-[Ir a sitio web](https://unusuariomas67.github.io/app-clima-JS/)
-
 ## Recursos
 
 - Iconos utilizados: [https://www.dovora.com/resources/weather-icons/](https://www.dovora.com/resources/weather-icons/)
