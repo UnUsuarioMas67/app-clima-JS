@@ -20,6 +20,9 @@ const weatherIconsMap = {
 	'50n': 'mist',
 };
 
+// PONER AQUI TU CLAVE DE API
+const API_KEY = ''
+
 // referencias a elementos HTML
 const locationName = document.querySelector('#location');
 const description = document.querySelector('#description');
@@ -53,11 +56,11 @@ function showWeatherByCurrentLocation() {
 		let lat = pos.coords.latitude;
 
 		// llamada a API para obtener informacion sobre el clima
-		let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3906978a86a4df9902b2c193df046746&lang=es&units=metric`;
+		let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=es&units=metric`;
 		getWeatherData(weatherUrl).then((weatherData) => updateWeather(weatherData));
 
 		// llamada a API para obtener nombre de ubicacion
-		let locationUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
+		let locationUrl = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`;
 		findLocationName(locationUrl).then((results) => {
 			console.log(results);
 			updateLocation(results[0]);
@@ -68,7 +71,7 @@ function showWeatherByCurrentLocation() {
 function showWeatherBySearch(textInput) {
 	if (textInput === '') return;
 
-	searchUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${textInput}&limit=5&appid=3906978a86a4df9902b2c193df046746`;
+	searchUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${textInput}&limit=5&appid=${API_KEY}`;
 	fetch(searchUrl)
 		.then(
 			(response) => response.json(),
@@ -83,7 +86,7 @@ function showWeatherBySearch(textInput) {
 			let lat = results[0].lat;
 
 			// llamada a API para obtener informacion sobre el clima
-			let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=3906978a86a4df9902b2c193df046746&lang=es&units=metric`;
+			let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=es&units=metric`;
 			getWeatherData(weatherUrl).then((weatherData) => updateWeather(weatherData));
 
 			// actualizar el nombre de la ubicación
